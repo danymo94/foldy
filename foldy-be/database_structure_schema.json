@@ -1,0 +1,295 @@
+{
+  "categories": [
+    {
+      "id": "string",
+      "laundryId": "string",
+      "name": "string",
+      "description": "string",
+      "published": true,
+      "image": "string (URL)",
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "products": [
+    {
+      "id": "string",
+      "laundryId": "string",
+      "name": "string",
+      "price": "number",
+      "discount": "number",
+      "published": true,
+      "image": "string (URL)",
+      "categoryIds": ["string"],
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "productAttributes": [
+    {
+      "id": "string",
+      "laundryId": "string",
+      "name": "string",
+      "description": "string",
+      "defaultPrice": "number",
+      "defaultTime": "number",
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "productAttributeAssignments": [
+    {
+      "id": "string",
+      "productId": "string",
+      "laundryId": "string",
+      "attributeId": "string",
+      "customPrice": "number",
+      "customTime": "number",
+      "discount": "number",
+      "published": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "users": [
+    {
+      "id": "string",
+      "email": "string",
+      "passwordHash": "string",
+      "role": "string (MASTER_ADMIN | AFFILIATE | CUSTOMER)",
+      "fullName": "string",
+      "phoneNumber": "string",
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "masterAdmins": [
+    {
+      "userId": "string",
+      "companyName": "string",
+      "vatNumber": "string",
+      "fiscalCode": "string",
+      "billingAddress": "string",
+      "billingEmail": "string",
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "affiliates": [
+    {
+      "userId": "string",
+      "vatNumber": "string",
+      "companyName": "string",
+      "businessAddress": "string",
+      "businessEmail": "string",
+      "businessPhone": "string",
+      "website": "string",
+      "commissionRate": "number",
+      "fixedFee": "number",
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "customers": [
+    {
+      "userId": "string",
+      "addresses": [
+        {
+          "id": "string",
+          "label": "string",
+          "address": "string",
+          "doorName": "string",
+          "city": "string",
+          "postalCode": "string",
+          "geoLocation": {
+            "latitude": "number",
+            "longitude": "number"
+          },
+          "default": true
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "string",
+          "type": "string",
+          "startDate": "string (ISO date format)",
+          "endDate": "string (ISO date format)",
+          "isActive": true
+        }
+      ],
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "laundries": [
+    {
+      "id": "string",
+      "affiliateId": "string",
+      "name": "string",
+      "logo": "string (URL)",
+      "coverImage": "string (URL)",
+      "rating": "number",
+      "certificateCode": "string",
+      "mobileNumber": "string",
+      "slogan": {
+        "title": "string",
+        "subtitle": "string"
+      },
+      "businessAddress": "string",
+      "pincode": "string",
+      "landmark": "string",
+      "geoLocation": {
+        "latitude": "number",
+        "longitude": "number"
+      },
+      "serviceAreas": ["string"],
+      "openingHours": [
+        {
+          "day": "string",
+          "timeSlots": [
+            {
+              "start": "string (HH:mm)",
+              "end": "string (HH:mm)"
+            }
+          ]
+        }
+      ],
+      "tags": ["string"],
+      "shortDescription": "string",
+      "cancelPolicy": "string",
+      "serviceChargeType": "string (PERCENTAGE | FIXED)",
+      "storeCharge": "number",
+      "minOrderPrice": "number",
+      "payoutInfo": {
+        "bankName": "string",
+        "bankCode": "string",
+        "recipientName": "string",
+        "accountNumber": "string",
+        "paypalId": "string",
+        "upiId": "string"
+      },
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "timeSlots": [
+    {
+      "id": "string",
+      "laundryId": "string",
+      "startTime": "string (HH:mm)",
+      "endTime": "string (HH:mm)",
+      "maxOrders": "number",
+      "discountPercentage": "number",
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "string",
+      "name": "string",
+      "description": "string",
+      "price": "number",
+      "durationDays": "number",
+      "benefits": {
+        "discountPercentage": "number",
+        "freeDelivery": "boolean",
+        "prioritySupport": "boolean"
+      },
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "string",
+      "code": "string",
+      "description": "string",
+      "discountType": "string",
+      "discountValue": "number",
+      "minOrderValue": "number",
+      "maxDiscountValue": "number",
+      "startDate": "string (ISO date format)",
+      "endDate": "string (ISO date format)",
+      "usageLimit": "number",
+      "usageCount": "number",
+      "isActive": true,
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "orders": [
+    {
+      "id": "string",
+      "customerId": "string",
+      "laundryId": "string",
+      "pickupTimeSlotId": "string",
+      "deliveryTimeSlotId": "string",
+      "orderDate": "string (ISO date format)",
+      "pickupDate": "string (ISO date format)",
+      "deliveryDate": "string (ISO date format)",
+      "status": "string",
+      "statusHistory": [
+        {
+          "status": "string",
+          "timestamp": "string (ISO date format)",
+          "updatedBy": "string"
+        }
+      ],
+      "laundryServiceCost": "number",
+      "appServiceCost": "number",
+      "total": "number",
+      "discounts": {
+        "couponId": "string",
+        "subscriptionDiscount": "number",
+        "timeSlotDiscount": "number",
+        "totalDiscount": "number"
+      },
+      "finalTotal": "number",
+      "paymentId": "string",
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "orderItems": [
+    {
+      "id": "string",
+      "orderId": "string",
+      "laundryId": "string",
+      "productId": "string",
+      "quantity": "number",
+      "services": [
+        {
+          "attributeId": "string",
+          "customPrice": "number",
+          "customTime": "number",
+          "discount": "number"
+        }
+      ],
+      "subtotal": "number",
+      "notes": "string",
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ],
+  "payments": [
+    {
+      "id": "string",
+      "orderId": "string",
+      "laundryId": "string",
+      "status": "string",
+      "amountPaid": "number",
+      "paymentMethod": "string",
+      "transactionId": "string",
+      "paymentDate": "string (ISO date format)",
+      "createdAt": "string (ISO date format)",
+      "updatedAt": "string (ISO date format)"
+    }
+  ]
+}
