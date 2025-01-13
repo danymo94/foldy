@@ -14,7 +14,7 @@ interface User {
 
 const userCollection = firestore.collection('users');
 
-export const createUser = async (user: User) => {
+export const createUser = async (user: User): Promise<string> => {
   const timestamp = new Date().toISOString();
   user.createdAt = timestamp;
   user.updatedAt = timestamp;
@@ -22,16 +22,25 @@ export const createUser = async (user: User) => {
   return docRef.id;
 };
 
-export const getUserById = async (id: string) => {
+export const getUserById = async (id: string): Promise<User | null> => {
   const doc = await userCollection.doc(id).get();
   return doc.exists ? (doc.data() as User) : null;
 };
 
-export const updateUser = async (id: string, user: Partial<User>) => {
+export const updateUser = async (id: string, user: Partial<User>): Promise<void> => {
   user.updatedAt = new Date().toISOString();
   await userCollection.doc(id).update(user);
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUser = async (id: string): Promise<void> => {
   await userCollection.doc(id).delete();
+};
+
+export const getUserByEmail = async (email: string): Promise<User | null> => {
+  const querySnapshot = await userCollection.where('email', '==', email).get();
+  if (querySnapshot.empty) {
+    return null;
+  }
+  const doc = querySnapshot.docs[0];
+  return doc.exists ? (doc.data() as User) : null;
 };

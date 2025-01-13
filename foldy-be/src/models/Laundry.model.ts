@@ -32,7 +32,7 @@ interface Laundry {
   businessAddress: string;
   pincode: string;
   landmark: string;
-  geoLocation: GeoLocation[];
+  geoLocations: GeoLocation[];
   serviceAreas: string[];
   openingHours: {
     day: string;
