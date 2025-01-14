@@ -22,10 +22,12 @@ const authenticate = async (req: AuthenticatedRequest, res: Response, next: Next
 
   if (authHeader.startsWith('Bearer ')) {
     const token = authHeader.split(' ')[1];
+    console.log(token);
 
     try {
       const decoded = verifyToken(token) as { id: string; role: string };
       req.user = { userId: decoded.id, role: decoded.role };
+      console.log(decoded);
       return next();
     } catch (error) {
       res.status(401).json({ error: 'Invalid or expired JWT token' });

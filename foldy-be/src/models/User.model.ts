@@ -36,11 +36,22 @@ export const deleteUser = async (id: string): Promise<void> => {
   await userCollection.doc(id).delete();
 };
 
+
+
 export const getUserByEmail = async (email: string): Promise<User | null> => {
   const querySnapshot = await userCollection.where('email', '==', email).get();
   if (querySnapshot.empty) {
     return null;
   }
-  const doc = querySnapshot.docs[0];
-  return doc.exists ? (doc.data() as User) : null;
+
+  for (const doc of querySnapshot.docs) {
+    const userId = doc.id;
+    console.log("User ID:", userId); // Log the ID for debugging
+    const userData = doc.data() as User;
+    userData.id = userId; // Add userId to the id key
+    return userData;
+  }
+
+  return null; // Return null if no matching document is found
 };
+

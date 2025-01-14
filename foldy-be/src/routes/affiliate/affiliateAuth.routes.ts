@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { registerUser, loginUser } from '../../controllers/shared/auth.controller';
+import AuthController from '../../controllers/shared/auth.controller';
 import { authenticate } from '../../middlewares/auth.middleware';
 
 const router = Router();
 
 // Route for affiliate registration
-router.post('/register', authenticate, registerUser);
+router.post('/register', authenticate, AuthController.registerUser);
 
 // Route for affiliate login
-router.post('/login', loginUser);
+router.post('/login', AuthController.loginUser);
 
 export default router;
