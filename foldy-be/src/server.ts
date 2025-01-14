@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import routes from './routes'; // Importa il router dall'index
 
 // Carica variabili d'ambiente da .env
 dotenv.config();
@@ -15,6 +16,9 @@ app.use(express.json());
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Express + TypeScript!');
 });
+
+// Utilizza le routes sotto la rotta /api
+app.use('/api', routes);
 
 // Porta e avvio server
 const PORT = process.env.PORT || 3000;

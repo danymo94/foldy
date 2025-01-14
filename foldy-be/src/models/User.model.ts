@@ -1,7 +1,7 @@
 import { firestore } from '../config/firebase';
 
 interface User {
-  id: string;
+  id?: string;
   email: string;
   passwordHash: string;
   role: 'MASTER_ADMIN' | 'AFFILIATE' | 'CUSTOMER';

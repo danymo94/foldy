@@ -4,8 +4,16 @@ import { signToken } from '../../config/jwt';
 import { auth } from '../../config/firebase';
 import bcrypt from 'bcryptjs';
 
+// Estendi il tipo Request per includere la proprietà user
+interface AuthenticatedRequest extends Request {
+  user?: {
+    id: string;
+    role: string;
+  };
+}
+
 // Register a new user
-const registerUser = async (req: Request, res: Response): Promise<void> => {
+const registerUser = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { email, password, role, fullName, phoneNumber, secretCode, GoogleOAuth, idToken } = req.body;
 
@@ -61,7 +69,7 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
       });
 
       const token = signToken({ id: userId, role });
-      res.status(201).json({ token });
+      res.status(201).json({ token, role });
       return;
     }
 
@@ -70,7 +78,6 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
 
     // Create the user
     const userId = await createUser({
-      id: '',
       email,
       passwordHash,
       role,
@@ -84,7 +91,8 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
     // Generate a JWT token
     const token = signToken({ id: userId, role });
 
-    res.status(201).json({ token });
+    // Save the payload in the response
+    res.status(201).json({ token, role });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error.' });
   }
@@ -112,7 +120,8 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
     // Generate a JWT token
     const token = signToken({ id: user.id, role: user.role });
 
-    res.status(200).json({ token });
+    // Save the payload in the response
+    res.status(200).json({ token, role: user.role });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error.' });
   }
