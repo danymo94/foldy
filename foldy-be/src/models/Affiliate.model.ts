@@ -35,6 +35,30 @@ export const updateAffiliate = async (id: string, affiliate: Partial<Affiliate>)
   await affiliateCollection.doc(id).update(affiliate);
 };
 
+export const updateAffiliateByUserId = async (userId: string, affiliate: Partial<Affiliate>) => {
+  const querySnapshot = await affiliateCollection.where('userId', '==', userId).get();
+  if (querySnapshot.empty) {
+    throw new Error(`No Affiliate found with userId: ${userId}`);
+  }
+  const doc = querySnapshot.docs[0];
+  affiliate.updatedAt = new Date().toISOString();
+  await affiliateCollection.doc(doc.id).update(affiliate);
+};
+
 export const deleteAffiliate = async (id: string) => {
   await affiliateCollection.doc(id).delete();
+};
+
+export const getAffiliateByUserId = async (userId: string) => {
+  const querySnapshot = await affiliateCollection.where('userId', '==', userId).get();
+  if (querySnapshot.empty) {
+    return null;
+  }
+  const doc = querySnapshot.docs[0];
+  return doc.data() as Affiliate;
+};
+
+export const getAllAffiliates = async () => {
+  const querySnapshot = await affiliateCollection.get();
+  return querySnapshot.docs.map(doc => doc.data() as Affiliate);
 };
